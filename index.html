@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juli's Bakery | Fresh Homemade Pastries in Snan Hall, Doha</title>
+  <meta name="description" content="Juli's Bakery in Snan Hall, Doha, Qatar. Known for fresh-baked Argentinian medialunas, flaky croissants, muffins & gourmet cookies made with real care by Julie. Visit us or find us at Torba Market.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+  
+  <style>
+    /* DARK FOREST GREEN THEME VARIABLES */
+    :root {
+      --bg-cream: #0B1912;          /* Deep luxury dark forest green base */
+      --bg-surface: #12251B;        /* Dark emerald surface background */
+      --bg-card: #183124;           /* Elevated dark green card container */
+      --accent-terracotta: #E2B874;  /* Warm golden wheat primary accent */
+      --accent-warm-brown: #F4C785;  /* Hover state golden warm accent */
+      --accent-gold: #C99E5C;        /* Rich artisanal gold */
+      --accent-gold-light: rgba(226, 184, 116, 0.25);
+      --text-main: #F4F7F4;         /* High-contrast soft white title text */
+      --text-muted: #B3C8BC;        /* Soft sage body text */
+      --text-light: #7E978A;        /* Muted sage label text */
+      --status-open: #4CAF50;
+      --status-open-bg: #183B2B;
+      --status-closed: #FF5252;
+      --status-closed-bg: #3B1B1B;
+      
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-script: 'Sacramento', cursive;
+      
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+      
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.55);
+      
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+    
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* PRELOADER SCREEN */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #07130E;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+    }
+    
+    #preloader.fade-out {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .preloader-logo-wrap {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Outer Spinning Ring */
+    .preloader-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: var(--accent-terracotta);
+      border-right-color: var(--accent-gold);
+      animation: spinRing 2s linear infinite;
+    }
+
+    .preloader-ring-outer {
+      position: absolute;
+      width: 120%;
+      height: 120%;
+      border-radius: 50%;
+      border: 2px dashed rgba(226, 184, 116, 0.3);
+      animation: spinRingReverse 6s linear infinite;
+    }
+
+    @keyframes spinRing {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes spinRingReverse {
+      0% { transform: rotate(360deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    /* Animated Central Emblem */
+    .preloader-emblem {
+      width: 76px;
+      height: 76px;
+      background: radial-gradient(circle, var(--accent-terracotta) 0%, #B8853D 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 35px rgba(226, 184, 116, 0.5);
+      animation: pulseEmblem 2s ease-in-out infinite alternate;
+    }
+
+    .preloader-emblem span {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #07130E;
+    }
+
+    @keyframes pulseEmblem {
+      0% { transform: scale(0.92); box-shadow: 0 0 15px rgba(226, 184, 116, 0.3); }
+      100% { transform: scale(1.08); box-shadow: 0 0 45px rgba(226, 184, 116, 0.7); }
+    }
+
+    /* Steam animation above loader logo */
+    .steam-container {
+      position: absolute;
+      top: -25px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .steam-line {
+      width: 4px;
+      height: 18px;
+      background: rgba(226, 184, 116, 0.6);
+      border-radius: 4px;
+      animation: steamUp 1.8s infinite ease-out;
+    }
+
+    .steam-line:nth-child(2) { animation-delay: 0.4s; height: 24px; }
+    .steam-line:nth-child(3) { animation-delay: 0.8s; }
+
+    @keyframes steamUp {
+      0% { transform: translateY(10px) scaleX(1); opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(-20px) scaleX(2); opacity: 0; }
+    }
+
+    .preloader-text {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--text-main);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: textGlow 1.5s ease-in-out infinite alternate;
+    }
+
+    .preloader-subtext {
+      font-family: var(--font-script);
+      font-size: 1.6rem;
+      color: var(--accent-terracotta);
+      margin-top: 0.2rem;
+    }
+
+    @keyframes textGlow {
+      0% { opacity: 0.6; }
+      100% { opacity: 1; }
+    }
+    
+    /* UTILITY CLASSES & TYPOGRAPHY */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    .section-padding {
+      padding: 5rem 0;
+    }
+    
+    @media (max-width: 768px) {
+      .section-padding {
+        padding: 3.5rem 0;
+      }
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    .serif-title {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.15;
+    }
+    
+    .script-subtitle {
+      font-family: var(--font-script);
+      font-size: 2.4rem;
+      color: var(--accent-terracotta);
+      margin-bottom: -0.5rem;
+      display: inline-block;
+      animation: floatSub 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatSub {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-4px); }
+    }
+    
+    .section-header {
+      max-width: 680px;
+      margin: 0 auto 3.5rem auto;
+    }
+    
+    .section-header h2 {
+      font-size: 2.75rem;
+      margin-top: 0.25rem;
+    }
+    
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-top: 0.75rem;
+    }
+    
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.9rem 2rem;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+    
+    .btn-primary {
+      background: var(--accent-terracotta);
+      color: #0B1912;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn-primary:hover {
+      background: var(--accent-warm-brown);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: var(--shadow-lg), 0 0 20px rgba(226, 184, 116, 0.4);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--accent-terracotta);
+      border-color: var(--accent-gold);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(226, 184, 116, 0.15);
+      border-color: var(--accent-terracotta);
+      color: #FFFFFF;
+      transform: translateY(-3px);
+    }
+    
+    /* STATUS BADGE */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    
+    .status-badge.open {
+      background-color: var(--status-open-bg);
+      color: var(--status-open);
+      border: 1px solid rgba(76, 175, 80, 0.3);
+    }
+    
+    .status-badge.closed {
+      background-color: var(--status-closed-bg);
+      color: var(--status-closed);
+      border: 1px solid rgba(255, 82, 82, 0.3);
+    }
+    
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    
+    .status-badge.open .status-dot {
+      background-color: var(--status-open);
+      box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+      animation: pulse 2s infinite;
+    }
+    
+    .status-badge.closed .status-dot {
+      background-color: var(--status-closed);
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(76, 175, 80, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+    }
+    
+    /* NAVIGATION BAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.25rem 0;
+      transition: var(--transition);
+    }
+    
+    .navbar.scrolled {
+      background: rgba(11, 25, 18, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      border-bottom: 1px solid rgba(226, 184, 116, 0.15);
+      padding: 0.85rem 0;
+    }
+    
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+    }
+    
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      background: radial-gradient(circle, var(--accent-terracotta) 0%, #C49147 100%);
+      color: #0B1912;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 1.35rem;
+      box-shadow: 0 0 15px rgba(226, 184, 116, 0.4);
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .brand-logo:hover .brand-icon {
+      transform: rotate(360deg) scale(1.1);
+    }
+    
+    .brand-text {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+    
+    .brand-text span {
+      color: var(--accent-terracotta);
+    }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent-terracotta);
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-terracotta);
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-main);
+      cursor: pointer;
+      padding: 0.25rem;
+    }
+    
+    /* HERO SECTION */
+    .hero {
+      padding-top: 9.5rem;
+      padding-bottom: 5.5rem;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at 80% 20%, rgba(226, 184, 116, 0.1) 0%, transparent 60%);
+    }
+    
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    
+    .hero-content {
+      max-width: 560px;
+    }
+    
+    .hero-badge-wrap {
+      margin-bottom: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .hero-title {
+      font-size: 3.8rem;
+      margin-bottom: 1.25rem;
+      color: var(--text-main);
+    }
+    
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+    
+    .hero-highlights {
+      display: flex;
+      gap: 2rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(226, 184, 116, 0.2);
+    }
+    
+    .highlight-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: var(--transition);
+    }
+
+    .highlight-item:hover {
+      transform: translateX(4px);
+    }
+    
+    .highlight-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--bg-card);
+      border: 1px solid rgba(226, 184, 116, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-terracotta);
+      font-size: 1.2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    
+    .highlight-text h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    
+    .highlight-text p {
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+    
+    .hero-media {
+      position: relative;
+    }
+    
+    .hero-img-wrapper {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: 2px solid rgba(226, 184, 116, 0.35);
+      background: var(--bg-card);
+    }
+    
+    .hero-img-wrapper img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .hero-img-wrapper:hover img {
+      transform: scale(1.05) rotate(0.5deg);
+    }
+
+    /* Ambient Glow Behind Hero Media */
+    .hero-media::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: -10%;
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle, rgba(226, 184, 116, 0.15) 0%, transparent 70%);
+      z-index: 0;
+      animation: pulseGlow 5s infinite alternate ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0% { opacity: 0.3; transform: scale(0.95); }
+      100% { opacity: 0.8; transform: scale(1.05); }
+    }
+    
+    .floating-card {
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      background: var(--bg-card);
+      padding: 1.25rem 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg), 0 0 25px rgba(226, 184, 116, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 280px;
+      border: 1px solid rgba(226, 184, 116, 0.4);
+      animation: float 4s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .floating-icon {
+      font-size: 1.75rem;
+      animation: bounceIcon 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes bounceIcon {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.2) rotate(10deg); }
+    }
+    
+    .floating-text h5 {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    
+    .floating-text p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    /* ABOUT SECTION */
+    .about-section {
+      background: var(--bg-surface);
+      border-top: 1px solid rgba(226, 184, 116, 0.15);
+      border-bottom: 1px solid rgba(226, 184, 116, 0.15);
+      position: relative;
+    }
+    
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    
+    .about-media {
+      position: relative;
+    }
+    
+    .about-img-frame {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 2px solid rgba(226, 184, 116, 0.3);
+      background: var(--bg-card);
+    }
+    
+    .about-img-frame img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .about-img-frame:hover img {
+      transform: scale(1.04);
+    }
+    
+    .about-badge {
+      position: absolute;
+      top: 20px;
+      right: -20px;
+      background: radial-gradient(circle, var(--accent-terracotta) 0%, #C99E5C 100%);
+      color: #0B1912;
+      padding: 1.5rem;
+      border-radius: 50%;
+      width: 115px;
+      height: 115px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: var(--font-serif);
+      font-weight: 700;
+      line-height: 1.1;
+      box-shadow: 0 0 30px rgba(226, 184, 116, 0.4);
+      animation: rotateStamp 20s linear infinite;
+    }
+
+    @keyframes rotateStamp {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .about-badge span {
+      font-size: 0.75rem;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .about-content h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1.25rem;
+    }
+    
+    .about-text {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+    
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    
+    .feature-box {
+      background: var(--bg-card);
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(226, 184, 116, 0.2);
+      transition: var(--transition);
+    }
+
+    .feature-box:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-terracotta);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    
+    .feature-box h4 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: var(--accent-terracotta);
+      margin-bottom: 0.25rem;
+    }
+    
+    .feature-box p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+    
+    /* SIGNATURE ITEMS SECTION */
+    .menu-filter {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+      padding: 0.6rem 1.4rem;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      border: 1px solid rgba(226, 184, 116, 0.3);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent-terracotta);
+      color: #0B1912;
+      border-color: var(--accent-terracotta);
+      box-shadow: 0 0 15px rgba(226, 184, 116, 0.35);
+      transform: translateY(-2px);
+    }
+    
+    .pastry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+    
+    .pastry-card {
+      background: var(--bg-surface);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(226, 184, 116, 0.2);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .pastry-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: var(--shadow-lg), 0 0 25px rgba(226, 184, 116, 0.15);
+      border-color: var(--accent-terracotta);
+    }
+    
+    .pastry-img-wrap {
+      position: relative;
+      height: 230px;
+      overflow: hidden;
+      background: var(--bg-card);
+    }
+    
+    .pastry-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .pastry-card:hover .pastry-img-wrap img {
+      transform: scale(1.1);
+    }
+    
+    .pastry-tag {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: rgba(11, 25, 18, 0.9);
+      color: var(--accent-terracotta);
+      border: 1px solid rgba(226, 184, 116, 0.3);
+      backdrop-filter: blur(4px);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 0.35rem 0.8rem;
+      border-radius: var(--radius-full);
+      z-index: 2;
+    }
+    
+    .pastry-info {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    
+    .pastry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.6rem;
+    }
+    
+    .pastry-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    
+    .pastry-desc {
+      font-size: 0.925rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+    
+    .pastry-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px dashed rgba(226, 184, 116, 0.25);
+    }
+    
+    .pastry-meta {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-terracotta);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    
+    .pastry-order-btn {
+      background: none;
+      border: none;
+      color: var(--accent-terracotta);
+      font-weight: 700;
+      font-size: 0.875rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: var(--transition);
+    }
+    
+    .pastry-order-btn:hover {
+      color: var(--accent-warm-brown);
+      transform: translateX(4px);
+    }
+    
+    /* HOURS & LOCATION SECTION */
+    .hours-location-section {
+      background: var(--bg-surface);
+      border-top: 1px solid rgba(226, 184, 116, 0.15);
+    }
+    
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 3.5rem;
+    }
+    
+    .location-card {
+      background: var(--bg-cream);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      border: 1px solid rgba(226, 184, 116, 0.25);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .location-card h3 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+    
+    .location-details {
+      margin-bottom: 2rem;
+    }
+    
+    .loc-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .loc-item:hover {
+      transform: translateX(5px);
+    }
+    
+    .loc-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      background: var(--bg-card);
+      border: 1px solid rgba(226, 184, 116, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-terracotta);
+      font-size: 1.25rem;
+    }
+    
+    .loc-text h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    
+    .loc-text p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    
+    .phone-box {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      text-align: center;
+      border: 2px dashed var(--accent-gold);
+    }
+    
+    .phone-number {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--accent-terracotta);
+      margin: 0.4rem 0 1rem 0;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .phone-number:hover {
+      transform: scale(1.03);
+      color: var(--accent-warm-brown);
+    }
+    
+    .hours-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      border: 1px solid rgba(226, 184, 116, 0.25);
+    }
+    
+    .hours-card h3 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+    
+    .hours-subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+    
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid rgba(226, 184, 116, 0.15);
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+    
+    .hours-row.today {
+      background: var(--bg-surface);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      border-left: 4px solid var(--accent-terracotta);
+      font-weight: 600;
+      animation: todayGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes todayGlow {
+      0% { border-left-color: var(--accent-terracotta); }
+      100% { border-left-color: #FFF; }
+    }
+    
+    .day-name {
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .today-tag {
+      font-size: 0.7rem;
+      background: var(--accent-terracotta);
+      color: #0B1912;
+      padding: 0.15rem 0.5rem;
+      border-radius: 10px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    
+    .time-slot {
+      color: var(--text-muted);
+    }
+    
+    .hours-row.today .time-slot {
+      color: var(--accent-terracotta);
+      font-weight: 700;
+    }
+
+    .closed-tag {
+      color: var(--status-closed);
+      font-weight: 600;
+    }
+    
+    /* FOOTER */
+    .site-footer {
+      background: #060E0A;
+      color: var(--bg-cream);
+      padding: 4rem 0 2rem 0;
+      border-top: 1px solid rgba(226, 184, 116, 0.15);
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    
+    .footer-brand .brand-text {
+      color: #FFFFFF;
+      font-size: 1.8rem;
+    }
+    
+    .footer-brand p {
+      color: var(--text-light);
+      margin-top: 1rem;
+      max-width: 360px;
+      font-size: 0.95rem;
+    }
+    
+    .footer-col h4 {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      color: var(--accent-gold);
+      margin-bottom: 1.25rem;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.75rem;
+    }
+    
+    .footer-links a {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+    
+    .footer-links a:hover {
+      color: var(--accent-terracotta);
+      padding-left: 4px;
+    }
+    
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(226, 184, 116, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-light);
+      font-size: 0.875rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    /* MODAL DIALOG */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+      padding: 1.5rem;
+    }
+    
+    .modal-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    .modal-card {
+      background: var(--bg-surface);
+      border-radius: var(--radius-lg);
+      max-width: 480px;
+      width: 100%;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      transform: translateY(20px) scale(0.95);
+      transition: var(--transition);
+      border: 1px solid var(--accent-gold);
+    }
+    
+    .modal-backdrop.active .modal-card {
+      transform: translateY(0) scale(1);
+    }
+    
+    .close-modal {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .close-modal:hover {
+      color: var(--accent-terracotta);
+      transform: rotate(90deg);
+    }
+    
+    .modal-header h3 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+    
+    .modal-body {
+      margin: 1.5rem 0;
+    }
+    
+    /* RICH SCROLL ANIMATIONS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-left.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-right.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-zoom {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-zoom.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Staggered delay helpers */
+    .delay-1 { transition-delay: 0.15s; }
+    .delay-2 { transition-delay: 0.3s; }
+    .delay-3 { transition-delay: 0.45s; }
+    .delay-4 { transition-delay: 0.6s; }
+    
+    /* RESPONSIVE MEDIA QUERIES */
+    @media (max-width: 992px) {
+      .hero-grid, .about-grid, .hours-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      
+      .hero-title {
+        font-size: 3rem;
+      }
+      
+      .floating-card {
+        bottom: 10px;
+        left: 10px;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-surface);
+        flex-direction: column;
+        padding: 1.5rem;
+        box-shadow: var(--shadow-md);
+        border-bottom: 1px solid rgba(226, 184, 116, 0.2);
+      }
+      
+      .nav-links.show {
+        display: flex;
+      }
+      
+      .mobile-toggle {
+        display: block;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .hero-highlights {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .about-badge {
+        right: 10px;
+        top: 10px;
+      }
+    }
+
+    /* ULTRA-SMALL MOBILE RESPONSIVENESS (320px - 480px) */
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1rem;
+      }
+      .section-padding {
+        padding: 3rem 0;
+      }
+      .navbar {
+        padding: 0.85rem 0;
+      }
+      .hero {
+        padding-top: 7rem;
+        padding-bottom: 3.5rem;
+      }
+      .hero-title {
+        font-size: 2.35rem;
+        margin-bottom: 1rem;
+      }
+      .script-subtitle {
+        font-size: 2rem;
+      }
+      .section-header {
+        margin-bottom: 2.25rem;
+      }
+      .section-header h2 {
+        font-size: 2.1rem;
+      }
+      .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      .btn {
+        width: 100%;
+        padding: 0.85rem 1.25rem;
+        font-size: 0.925rem;
+      }
+      .hero-ctas {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+      }
+      .status-badge {
+        font-size: 0.78rem;
+        padding: 0.35rem 0.75rem;
+      }
+      .hero-badge-wrap {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      .hero-img-wrapper img {
+        height: 280px;
+      }
+      .floating-card {
+        bottom: -15px;
+        left: 5px;
+        right: 5px;
+        max-width: none;
+        padding: 0.85rem 1rem;
+      }
+      .about-content h2 {
+        font-size: 2.1rem;
+      }
+      .about-img-frame img {
+        height: 300px;
+      }
+      .about-badge {
+        width: 90px;
+        height: 90px;
+        padding: 1rem;
+        font-size: 0.85rem;
+        right: 5px;
+        top: 5px;
+      }
+      .about-features {
+        grid-template-columns: 1fr;
+        gap: 0.85rem;
+      }
+      .pastry-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .pastry-img-wrap {
+        height: 200px;
+      }
+      .location-card, .hours-card {
+        padding: 1.5rem 1.1rem;
+      }
+      .hours-row {
+        flex-direction: flex-row;
+        justify-content: space-between;
+        font-size: 0.875rem;
+        padding: 0.8rem 0.6rem;
+      }
+      .phone-number {
+        font-size: 1.45rem;
+      }
+      .modal-card {
+        padding: 1.75rem 1.25rem;
+        max-width: 92vw;
+      }
+    }
+
+    @media (max-width: 360px) {
+      /* Extra small 320px screen tuning */
+      html {
+        font-size: 14.5px;
+      }
+      .container {
+        padding: 0 0.85rem;
+      }
+      .hero-title {
+        font-size: 2rem;
+      }
+      .section-header h2 {
+        font-size: 1.85rem;
+      }
+      .brand-text {
+        font-size: 1.2rem;
+      }
+      .brand-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1.15rem;
+      }
+      .filter-btn {
+        padding: 0.5rem 0.9rem;
+        font-size: 0.825rem;
+      }
+      .pastry-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+      }
+      .pastry-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+      .pastry-order-btn {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .hours-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PRELOADER SCREEN -->
+  <div id="preloader">
+    <div class="preloader-logo-wrap">
+      <div class="steam-container">
+        <div class="steam-line"></div>
+        <div class="steam-line"></div>
+        <div class="steam-line"></div>
+      </div>
+      <div class="preloader-ring-outer"></div>
+      <div class="preloader-ring"></div>
+      <div class="preloader-emblem">
+        <span>J</span>
+      </div>
+    </div>
+    <div class="preloader-text">Juli's Bakery</div>
+    <div class="preloader-subtext">Warming up the ovens...</div>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="brand-logo">
+        <div class="brand-icon">J</div>
+        <div class="brand-text">Juli's <span>Bakery</span></div>
+      </a>
+      
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#signature">Signature Pastries</a></li>
+        <li><a href="#hours-location">Hours & Location</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <div id="navStatusBadge" class="status-badge open">
+          <span class="status-dot"></span>
+          <span id="navStatusText">Open Now</span>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content reveal-left">
+          <div class="hero-badge-wrap">
+            <span class="status-badge open" id="heroStatusBadge">
+              <span class="status-dot"></span>
+              <span id="heroStatusText">Baking Fresh Today</span>
+            </span>
+            <span style="font-size: 0.875rem; color: var(--text-muted); font-weight: 500;">
+              📍 Snan Hall, Doha & Torba Market
+            </span>
+          </div>
+          
+          <h1 class="serif-title hero-title">Warm, Artisanal Pastries Crafted with Real Care.</h1>
+          
+          <p class="hero-subtitle">
+            Homemade in small batches by Julie. Experience our signature Argentinian medialunas, flaky French butter croissants, rich berry muffins, and warm gourmet cookies.
+          </p>
+          
+          <div class="hero-ctas">
+            <a href="tel:+97433177399" class="btn btn-primary">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              Call to Order (+974 3317 7399)
+            </a>
+            <a href="#signature" class="btn btn-secondary">Explore Menu</a>
+          </div>
+          
+          <div class="hero-highlights">
+            <div class="highlight-item">
+              <div class="highlight-icon">🥐</div>
+              <div class="highlight-text">
+                <h4>Small Batch Daily</h4>
+                <p>Baked fresh every morning</p>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">🧈</div>
+              <div class="highlight-text">
+                <h4>100% Real Butter</h4>
+                <p>Pure wholesome ingredients</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="hero-media reveal-right">
+          <div class="hero-img-wrapper">
+            <img src="./assets/images/hero_bakery_1785319159340.jpg" alt="Juli's Bakery Fresh Baked Pastries" width="600" height="480">
+          </div>
+          <div class="floating-card">
+            <div class="floating-icon">✨</div>
+            <div class="floating-text">
+              <h5>Customer Favorite</h5>
+              <p>Argentinian Glazed Medialunas</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="section-padding about-section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-media reveal-left">
+          <div class="about-img-frame">
+            <img src="./assets/images/julie_story_1785319224233.jpg" alt="Julie Handcrafted Dough Baking" width="550" height="440">
+          </div>
+          <div class="about-badge">
+            <span>Handmade</span>
+            Doha
+          </div>
+        </div>
+        
+        <div class="about-content reveal-right">
+          <div class="script-subtitle">Our Story</div>
+          <h2 class="serif-title">Baking the Way it Was Meant to Be</h2>
+          
+          <p class="about-text">
+            At Juli’s Bakery, every morning begins before dawn with the comforting aroma of browned butter, warm vanilla, and toasted yeast. Founded by Julie in Doha, Qatar, our kitchen is dedicated to simple, honest baking techniques passed down through generations.
+          </p>
+          <p class="about-text">
+            We don't use shortcuts or pre-mixed doughs. Every single item—from our sweet, sticky Argentinian medialunas to our golden layered croissants—is rolled, shaped, and baked in small batches right here at Snan Hall and featured regularly at Torba Market.
+          </p>
+          
+          <div class="about-features">
+            <div class="feature-box reveal-zoom delay-1">
+              <h4>Homemade with Love</h4>
+              <p>Crafted by Julie with personal dedication in every batch.</p>
+            </div>
+            <div class="feature-box reveal-zoom delay-2">
+              <h4>Torba Market Stall</h4>
+              <p>Catch us on market days for weekend treats.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE ITEMS SECTION -->
+  <section class="section-padding" id="signature">
+    <div class="container">
+      <div class="section-header text-center reveal-zoom">
+        <div class="script-subtitle">Baked Daily</div>
+        <h2 class="serif-title">Signature Pastries & Treats</h2>
+        <p>Hand-kneaded, slow-proved, and fresh out of the oven every day.</p>
+      </div>
+      
+      <div class="menu-filter reveal">
+        <button class="filter-btn active" onclick="filterPastries('all')">All Delights</button>
+        <button class="filter-btn" onclick="filterPastries('signature')">Signature Items</button>
+        <button class="filter-btn" onclick="filterPastries('morning')">Morning Bakes</button>
+        <button class="filter-btn" onclick="filterPastries('sweet')">Sweet Treats</button>
+      </div>
+      
+      <div class="pastry-grid" id="pastryGrid">
+        
+        <!-- ITEM 1: MEDIALUNAS -->
+        <div class="pastry-card reveal-zoom delay-1" data-category="signature morning">
+          <div class="pastry-img-wrap">
+            <span class="pastry-tag">House Specialty</span>
+            <img src="./assets/images/medialunas_1785319171907.jpg" alt="Argentinian Medialunas" width="400" height="230">
+          </div>
+          <div class="pastry-info">
+            <div class="pastry-header">
+              <h3 class="pastry-title">Argentinian Medialunas</h3>
+            </div>
+            <p class="pastry-desc">
+              Golden, sweet-glazed crescent pastries with delicate, airy buttery layers. Hand-rolled daily according to traditional recipes.
+            </p>
+            <div class="pastry-footer">
+              <span class="pastry-meta">⭐ Best Seller</span>
+              <button class="pastry-order-btn" onclick="openOrderModal('Argentinian Medialunas')">
+                Call to Order →
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- ITEM 2: CROISSANTS -->
+        <div class="pastry-card reveal-zoom delay-2" data-category="morning signature">
+          <div class="pastry-img-wrap">
+            <span class="pastry-tag">Classic French</span>
+            <img src="./assets/images/croissants_1785319184889.jpg" alt="Flaky Butter Croissants" width="400" height="230">
+          </div>
+          <div class="pastry-info">
+            <div class="pastry-header">
+              <h3 class="pastry-title">Flaky Butter Croissants</h3>
+            </div>
+            <p class="pastry-desc">
+              Traditional French butter croissants featuring light, honeycombed layers and a delicate crisp golden crunch in every bite.
+            </p>
+            <div class="pastry-footer">
+              <span class="pastry-meta">🔥 Fresh Daily</span>
+              <button class="pastry-order-btn" onclick="openOrderModal('Flaky Butter Croissants')">
+                Call to Order →
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- ITEM 3: MUFFINS -->
+        <div class="pastry-card reveal-zoom delay-3" data-category="sweet morning">
+          <div class="pastry-img-wrap">
+            <span class="pastry-tag">Artisanal Bake</span>
+            <img src="./assets/images/muffins_1785319196191.jpg" alt="Fresh Baked Muffins" width="400" height="230">
+          </div>
+          <div class="pastry-info">
+            <div class="pastry-header">
+              <h3 class="pastry-title">Homemade Muffins</h3>
+            </div>
+            <p class="pastry-desc">
+              Soft, moist morning muffins packed with fresh berries or rich chocolate chunks, finished with a delightful sugar crumble top.
+            </p>
+            <div class="pastry-footer">
+              <span class="pastry-meta">🫐 Berry & Cocoa</span>
+              <button class="pastry-order-btn" onclick="openOrderModal('Homemade Muffins')">
+                Call to Order →
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- ITEM 4: COOKIES -->
+        <div class="pastry-card reveal-zoom delay-4" data-category="sweet signature">
+          <div class="pastry-img-wrap">
+            <span class="pastry-tag">Small Batch</span>
+            <img src="./assets/images/cookies_1785319210850.jpg" alt="Gourmet Handcrafted Cookies" width="400" height="230">
+          </div>
+          <div class="pastry-info">
+            <div class="pastry-header">
+              <h3 class="pastry-title">Gourmet Cookies</h3>
+            </div>
+            <p class="pastry-desc">
+              Chewy on the inside with golden crisp edges, loaded with dark chocolate chunks and a touch of organic sea salt.
+            </p>
+            <div class="pastry-footer">
+              <span class="pastry-meta">🍪 Chunky Chocolate</span>
+              <button class="pastry-order-btn" onclick="openOrderModal('Gourmet Cookies')">
+                Call to Order →
+              </button>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- HOURS & LOCATION SECTION -->
+  <section class="section-padding hours-location-section" id="hours-location">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <div class="script-subtitle">Visit Us</div>
+        <h2 class="serif-title">Location & Store Hours</h2>
+        <p>Come by for fresh morning bakes or give us a call to reserve your batch.</p>
+      </div>
+      
+      <div class="hours-grid">
+        <!-- LOCATION INFO -->
+        <div class="location-card reveal-left">
+          <div>
+            <h3>Where to Find Us</h3>
+            <div class="location-details">
+              <div class="loc-item">
+                <div class="loc-icon">📍</div>
+                <div class="loc-text">
+                  <h4>Main Bakery Location</h4>
+                  <p>Snan Hall, Doha, Qatar</p>
+                </div>
+              </div>
+              <div class="loc-item">
+                <div class="loc-icon">🎪</div>
+                <div class="loc-text">
+                  <h4>Torba Farmers Market Stall</h4>
+                  <p>Check out our market stall for special weekend pop-ups.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="phone-box">
+            <p style="font-size: 0.9rem; color: var(--text-muted); font-weight: 600;">Phone & Pre-Orders</p>
+            <a href="tel:+97433177399" class="phone-number">+974 3317 7399</a>
+            <a href="tel:+97433177399" class="btn btn-primary" style="width: 100%;">
+              📞 Call to Order Now
+            </a>
+          </div>
+        </div>
+        
+        <!-- STORE HOURS -->
+        <div class="hours-card reveal-right">
+          <h3>Bakery Opening Hours</h3>
+          <p class="hours-subtitle">All times in Qatar Time (AST, GMT+3)</p>
+          
+          <div class="hours-table">
+            <div class="hours-row" id="day-1">
+              <div class="day-name">Monday <span class="today-tag" style="display:none">Today</span></div>
+              <div class="time-slot">7:25 AM – 10:25 PM</div>
+            </div>
+            <div class="hours-row" id="day-2">
+              <div class="day-name">Tuesday <span class="today-tag" style="display:none">Today</span></div>
+              <div class="time-slot">7:25 AM – 10:25 PM</div>
+            </div>
+            <div class="hours-row" id="day-3">
+              <div class="day-name">Wednesday <span class="today-tag" style="display:none">Today</span></div>
+              <div class="time-slot">7:25 AM – 10:25 PM</div>
+            </div>
+            <div class="hours-row" id="day-4">
+              <div class="day-name">Thursday <span class="today-tag" style="display:none">Today</span></div>
+              <div class="time-slot">7:25 AM – 10:25 PM</div>
+            </div>
+            <div class="hours-row" id="day-5">
+              <div class="day-name">Friday <span class="today-tag" style="display:none">Today</span></div>
+              <div class="time-slot">8:35 AM – 9:10 PM</div>
+            </div>
+            <div class="hours-row" id="day-6">
+              <div class="day-name">Saturday <span class="today-tag" style="display:none">Today</span></div>
+              <div class="time-slot closed-tag">Closed (Oven Rest Day)</div>
+            </div>
+            <div class="hours-row" id="day-0">
+              <div class="day-name">Sunday <span class="today-tag" style="display:none">Today</span></div>
+              <div class="time-slot">7:25 AM – 10:25 PM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo" style="margin-bottom: 0.5rem;">
+            <div class="brand-icon">J</div>
+            <div class="brand-text">Juli's <span>Bakery</span></div>
+          </div>
+          <p>Handmade, small-batch artisanal bakery in Snan Hall, Doha. Made with real butter and dedicated care by Julie.</p>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#signature">Signature Pastries</a></li>
+            <li><a href="#hours-location">Hours & Location</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Contact & Pre-Order</h4>
+          <ul class="footer-links">
+            <li><a href="tel:+97433177399">📞 +974 3317 7399</a></li>
+            <li>📍 Snan Hall, Doha, Qatar</li>
+            <li>🎪 Stall at Torba Market</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© <span id="currentYear">2026</span> Juli's Bakery. All rights reserved.</p>
+        <p>Freshly Baked in Doha, Qatar</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ORDER MODAL -->
+  <div class="modal-backdrop" id="orderModal">
+    <div class="modal-card">
+      <button class="close-modal" onclick="closeOrderModal()">&times;</button>
+      <div class="modal-header">
+        <div class="script-subtitle" style="font-size: 1.8rem;">Pre-Order</div>
+        <h3 id="modalItemTitle">Call to Place Order</h3>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text-muted); margin-bottom: 1.25rem;">
+          Our pastries are baked in small batches to ensure maximum freshness. Call us directly to reserve your order for pickup at Snan Hall!
+        </p>
+        <div class="phone-box" style="margin-bottom: 1rem;">
+          <span style="font-size: 0.85rem; color: var(--text-muted);">Direct Bakery Line:</span>
+          <a href="tel:+97433177399" class="phone-number" style="font-size: 1.6rem;">+974 3317 7399</a>
+        </div>
+      </div>
+      <a href="tel:+97433177399" class="btn btn-primary" style="width: 100%;">
+        📞 Call Now (+974 3317 7399)
+      </a>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // 0. PRELOADER HIDE LOGIC
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+          preloader.classList.add('fade-out');
+        }
+      }, 900); // Gentle 0.9s loader reveal
+    });
+
+    // 1. DYNAMIC STORE HOURS & STATUS COMPUTATION (QATAR AST = UTC+3)
+    function checkBakeryStatus() {
+      // Get current date/time in Qatar (UTC+3)
+      const now = new Date();
+      const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const qatarTime = new Date(utcTime + (3600000 * 3));
+      
+      const day = qatarTime.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+      const hours = qatarTime.getHours();
+      const minutes = qatarTime.getMinutes();
+      const timeInMinutes = hours * 60 + minutes;
+      
+      let isOpen = false;
+      let statusMessage = "";
+      
+      // Schedule:
+      // Mon-Thu & Sun: 7:25 AM (445 min) to 10:25 PM (1345 min)
+      // Fri: 8:35 AM (515 min) to 9:10 PM (1270 min)
+      // Sat: Closed
+      
+      const openMonSun = 7 * 60 + 25;  // 445
+      const closeMonSun = 22 * 60 + 25; // 1345
+      
+      const openFri = 8 * 60 + 35;   // 515
+      const closeFri = 21 * 60 + 10;  // 1270
+      
+      if (day === 6) { // Saturday
+        isOpen = false;
+        statusMessage = "Closed Today (Oven Rest)";
+      } else if (day === 5) { // Friday
+        if (timeInMinutes >= openFri && timeInMinutes <= closeFri) {
+          isOpen = true;
+          statusMessage = "Baking Fresh • Open Until 9:10 PM";
+        } else {
+          isOpen = false;
+          statusMessage = "Oven Resting • Opens Sun 7:25 AM";
+        }
+      } else { // Mon-Thu (1-4) & Sun (0)
+        if (timeInMinutes >= openMonSun && timeInMinutes <= closeMonSun) {
+          isOpen = true;
+          statusMessage = "Baking Fresh • Open Until 10:25 PM";
+        } else {
+          isOpen = false;
+          statusMessage = "Oven Resting • Opens 7:25 AM";
+        }
+      }
+      
+      // Update UI Status Badges
+      const navBadge = document.getElementById('navStatusBadge');
+      const navText = document.getElementById('navStatusText');
+      const heroBadge = document.getElementById('heroStatusBadge');
+      const heroText = document.getElementById('heroStatusText');
+      
+      if (isOpen) {
+        navBadge.className = 'status-badge open';
+        navText.textContent = 'Open Now';
+        heroBadge.className = 'status-badge open';
+        heroText.textContent = statusMessage;
+      } else {
+        navBadge.className = 'status-badge closed';
+        navText.textContent = 'Closed Now';
+        heroBadge.className = 'status-badge closed';
+        heroText.textContent = statusMessage;
+      }
+      
+      // Highlight current day row in hours table
+      const todayRow = document.getElementById(`day-${day}`);
+      if (todayRow) {
+        todayRow.classList.add('today');
+        const tag = todayRow.querySelector('.today-tag');
+        if (tag) tag.style.display = 'inline-block';
+      }
+    }
+    
+    // 2. NAVBAR SCROLL EFFECT
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 40) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    
+    // 3. MOBILE MENU TOGGLE
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    mobileToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    // Close mobile menu when link is clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
+    });
+    
+    // 4. MENU FILTERING
+    function filterPastries(category) {
+      // Update active tab button styling
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      const cards = document.querySelectorAll('.pastry-card');
+      cards.forEach(card => {
+        const catList = card.getAttribute('data-category');
+        if (category === 'all' || catList.includes(category)) {
+          card.style.display = 'flex';
+          setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0) scale(1)'; }, 50);
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px) scale(0.95)';
+          setTimeout(() => { card.style.display = 'none'; }, 300);
+        }
+      });
+    }
+    
+    // 5. ORDER MODAL
+    function openOrderModal(itemName) {
+      const modal = document.getElementById('orderModal');
+      const itemTitle = document.getElementById('modalItemTitle');
+      if (itemName) {
+        itemTitle.textContent = `Order ${itemName}`;
+      } else {
+        itemTitle.textContent = `Call to Place Order`;
+      }
+      modal.classList.add('active');
+    }
+    
+    function closeOrderModal() {
+      const modal = document.getElementById('orderModal');
+      modal.classList.remove('active');
+    }
+    
+    // Close modal on click outside content
+    document.getElementById('orderModal').addEventListener('click', (e) => {
+      if (e.target.id === 'orderModal') {
+        closeOrderModal();
+      }
+    });
+
+    // 6. INTERSECTION OBSERVER FOR RICH SCROLL ANIMATIONS
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.12
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom').forEach(element => {
+      revealObserver.observe(element);
+    });
+
+    // 7. INITIALIZE ON LOAD
+    document.addEventListener('DOMContentLoaded', () => {
+      checkBakeryStatus();
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
